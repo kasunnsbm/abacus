@@ -1,0 +1,9 @@
+/*------------------Edit By Lakmali-(14208978)---------------------*/
+:- op(1000,xfy,'and').
+:- op(1000,xfy,'or').
+:- op(1000,xfy,'not').
+find_vars(N,V,V) :- member(N,[0,1]),!. 
+find_vars(X,Vin,Vout) :- atom(X), (member(X,Vin) -> Vout = Vin ; Vout = [X|Vin]).   
+find_vars(X and Y,Vin,Vout) :- find_vars(X,Vin,Vtemp),find_vars(Y,Vtemp,Vout).
+find_vars(X or Y,Vin,Vout) :-  find_vars(X,Vin,Vtemp),find_vars(Y,Vtemp,Vout).
+/*------------------End Edit By Lakmali------------------*/
