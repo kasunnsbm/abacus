@@ -1,4 +1,4 @@
-/*------------------Edit By Lakmali-(14208978)---------------------*/
+/*------------------Edit By Withange Lakmali-(UCD ID:14208978)---------------------*/
 :- op(1000,xfy,'and').
 :- op(1000,xfy,'or').
 :- op(1000,xfy,'not').
@@ -6,16 +6,16 @@ find_vars(N,V,V) :- member(N,[0,1]),!.
 find_vars(X,Vin,Vout) :- atom(X), (member(X,Vin) -> Vout = Vin ; Vout = [X|Vin]).   
 find_vars(X and Y,Vin,Vout) :- find_vars(X,Vin,Vtemp),find_vars(Y,Vtemp,Vout).
 find_vars(X or Y,Vin,Vout) :-  find_vars(X,Vin,Vtemp),find_vars(Y,Vtemp,Vout).
-/*------------------End Edit By Lakmali------------------*/
-/*------------------Edit By Kasun-(14208973)-------------------------*/
+/*------------------End Edit By Withanage Lakmali------------------*/
+/*------------------Edit By Kasun Nayanajith-(UCD ID:14208973)-------------------------*/
 find_vars(not X,Vin,Vout) :-   find_vars(X,Vin,Vout).
 initial_assign([],[]).
 initial_assign([X|R],[0|S]) :- initial_assign(R,S).
 successor(A,S) :- reverse(A,R),next(R,N),reverse(N,S).
 next([0|R],[1|R]).
 next([1|R],[0|S]) :- next(R,S).
-/*------------------End Edit By Kasun------------------*/
-/*----------------------Edit by Oshani Gallage-(14210028)--------------------*/
+/*------------------End Edit By Kasun Nayanajith------------------*/
+/*----------------------Edit by Oshani Gallage-(UCD ID:14210028)--------------------*/
 truth_value(N,_,_,N) :- member(N,[0,1]).
 truth_value(X,Vars,A,Val) :- atom(X),lookup(X,Vars,A,Val).
 truth_value(X and Y,Vars,A,Val) :- truth_value(X,Vars,A,VX),truth_value(Y,Vars,A,VY),boole_and(VX,VY,Val).
@@ -23,7 +23,7 @@ truth_value(X or Y,Vars,A,Val) :-  truth_value(X,Vars,A,VX),truth_value(Y,Vars,A
 truth_value(not X,Vars,A,Val) :-   truth_value(X,Vars,A,VX),boole_not(VX,Val).
 lookup(X,[X|_],[V|_],V).
 /*---------------------End Edit by Oshani Gallage-----------------------------*/
-/*---------------------Edit By Gayan----------------------*/
+/*---------------------Edit By Gayan Duminda-(UCD ID:14208904)----------------------*/
 lookup(X,[_|Vars],[_|A],V) :- lookup(X,Vars,A,V).
 tt(E) :- find_vars(E,[],V),reverse(V,Vars),initial_assign(Vars,A),write('  '), write(Vars), write('    '), write(E), nl,write('-----------------------------------------'), nl,write_row(E,Vars,A),write('-----------------------------------------'), nl.
 write_row(E,Vars,A) :- write('  '), write(A), write('        '), truth_value(E,Vars,A,V), write(V), nl,(successor(A,N) -> write_row(E,Vars,N) ; true).
@@ -31,14 +31,14 @@ boole_and(0,0,0).
 boole_or(0,0,0).      
 boole_not(0,1).
 boole_and(0,1,0). 
-/*---------------------------------------------------------*/
-/*-----------------------Edit By Susudu -------------------*/     
+/*-------------------End Edit by Gayan Duminda---------------------------*/
+/*-----------------------Edit By Susudu Paththinigedara(UCD ID:14208977) -------------------*/     
 boole_or(0,1,1).      
 boole_not(1,0).
 boole_and(1,0,0).      
 boole_or(1,0,1).
 boole_and(1,1,1).      
 boole_or(1,1,1).
-
+/*-------------------End Edit by Susudu Paththinigedara---------------------------*/
 
 
